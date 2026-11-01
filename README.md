@@ -1,4 +1,4 @@
-# Hi there, I'm Ahmed Ghazal 👋
+# Hi there, I'm A7med Ghazal 👋
 
 ### Full-Stack Developer | AI-Assisted Software Engineering
 
