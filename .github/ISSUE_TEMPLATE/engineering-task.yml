@@ -1,0 +1,41 @@
+name: Engineering Task
+description: A scoped engineering task with evidence and acceptance criteria
+title: "[Task] "
+labels: []
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What does this deliver?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Current evidence and constraints
+      description: Repo paths, logs, existing behavior, data constraints and protected files
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Tests, expected outputs, manual review, screenshots if needed
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Workstream
+      options:
+        - Frontend / Next.js / React
+        - Backend / NestJS / Node.js
+        - C# / ASP.NET Core
+        - Database / Migrations
+        - Security / Infrastructure
+        - Documentation / Learning
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Risk and rollback plan
