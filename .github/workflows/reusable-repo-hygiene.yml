@@ -1,0 +1,37 @@
+name: Reusable repository hygiene gate
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout without credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reject tracked dependencies and archive payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          git ls-files -z | python3 -c '
+          import sys
+          paths = [p.decode("utf-8", "replace") for p in sys.stdin.buffer.read().split(b"\x00") if p]
+          deps = [p for p in paths if "node_modules" in p.split("/")]
+          archives = [p for p in paths if p.lower().endswith((".zip", ".tar.gz", ".7z", ".rar"))]
+          for label, found in (("tracked node_modules", deps), ("tracked archives", archives)):
+              if found:
+                  print(f"BLOCKED: {label} ({len(found)})")
+                  for item in found[:20]: print("  " + item)
+          if deps or archives:
+              print("Review contents and repository history before publishing; do not run archives.")
+              sys.exit(1)
+          print(f"PASS: {len(paths)} tracked paths, no tracked dependencies or archive payloads")
+          '
+# Deliberately strict: call only after inspecting and documenting trusted binary assets.
+# Not a malware scanner. It does not inspect deleted history or external dependencies.
