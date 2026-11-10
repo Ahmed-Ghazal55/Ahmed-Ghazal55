@@ -1,0 +1,31 @@
+name: Pilot shared workflows
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pilot-ci.yml'
+      - '.github/workflows/reusable-node-ci.yml'
+      - '.github/workflows/reusable-dotnet-ci.yml'
+      - 'engineering/fixtures/**'
+  pull_request:
+    paths:
+      - '.github/workflows/pilot-ci.yml'
+      - '.github/workflows/reusable-node-ci.yml'
+      - '.github/workflows/reusable-dotnet-ci.yml'
+      - 'engineering/fixtures/**'
+
+permissions:
+  contents: read
+
+jobs:
+  node-smoke:
+    uses: ./.github/workflows/reusable-node-ci.yml
+    with:
+      node-version: '24'
+      working-directory: 'engineering/fixtures/node'
+  dotnet-smoke:
+    uses: ./.github/workflows/reusable-dotnet-ci.yml
+    with:
+      dotnet-version: '10.0.x'
+      target: 'engineering/fixtures/dotnet/Smoke.Tests/Smoke.Tests.csproj'
