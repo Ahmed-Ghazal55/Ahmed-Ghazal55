@@ -1,0 +1,10 @@
+{
+  "name": "github-engineering-node-smoke",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "node --check index.js",
+    "build": "node --check index.js",
+    "test:ci": "node --test"
+  }
+}
