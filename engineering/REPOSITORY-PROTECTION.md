@@ -1,6 +1,6 @@
 # GitHub Branch Protection and Environment Policy
 
-Status (2026-11-11): [private engineering board](https://github.com/users/Ahmed-Ghazal55/projects/1) configured. Main protection is a [disabled proposal](protect-main.proposal.json), awaiting explicit owner approval. Environments are intentionally deferred until a deployment target is approved. See the [current audit](audits/2026-11-11/EXECUTION_SUMMARY.md).
+Status (2026-11-11): [private engineering board](https://github.com/users/Ahmed-Ghazal55/projects/1) configured. Main protection is [active ruleset 27044588](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/rules/27044588) after explicit owner approval and verified CI/merge. The [JSON proposal](protect-main.proposal.json) stays disabled as a safe import template. Environments are intentionally deferred until a deployment target is approved. See the [current audit](audits/2026-11-11/EXECUTION_SUMMARY.md).
 
 ## Branch rules for approved repositories
 - Protect main from deletion and force pushes.

@@ -3,7 +3,7 @@
 ## Pilot security readback
 - Dependabot version updates cover GitHub Actions, `/engineering/fixtures/node` and `/engineering/fixtures/dotnet/Smoke.Tests`; no open dependency PRs at discovery. PRs #7, #8 and #9 were already merged.
 - Vulnerability alerts were initially disabled. Enabled once via REST; subsequent status GET returned 204 and open alert query returned `[]`.
-- Dependabot automatic security-update setting was disabled at discovery and was not changed; version-update PRs remain enabled through configuration. No alerts were dismissed.
+- Dependabot automatic security-update PRs were disabled at discovery and are now enabled; independent GET returned `enabled: true`, `paused: false`. Version-update PRs remain configured. No auto-merge was enabled and no alerts were dismissed.
 - CodeQL advanced setup already exists for JavaScript/TypeScript and C#, with `security-extended`; default setup is not configured and was not enabled alongside it.
 - Open CodeQL alerts, secret-scanning alerts and repository advisories returned empty lists. Secret scanning and push protection are enabled. This does not prove absence of vulnerabilities.
 - Local fixture `npm audit`: zero known vulnerabilities, **zero external dependencies**. NuGet including transitives: no known vulnerable packages from the current source. SDK 18.11.1 and runner 4.0.1 built and executed one real test on .NET 10.
@@ -18,7 +18,7 @@
 | Engineering pilot | `.github/workflows/pilot-ci.yml:5`; `codeql.yml:3` (before patch) | Medium correctness risk | Workflow-level path filters omit documentation-only PRs | Run checks for every PR before requiring them | Patched and verified by regression/PR CI |
 | Engineering pilot | `.github/workflows/reusable-dotnet-ci.yml:42` (before patch) | Medium correctness risk | Test command alone allows zero discovered/executed tests | Fresh TRX plus nonzero executed-test guard | Patched; empty-suite and plain-library regression cases |
 | Engineering pilot | `.github/workflows/reusable-node-ci.yml:29` and corresponding action references (before patch) | Low supply-chain hardening | Major-version tags are movable | Pin existing versions to verified SHA | Patched without version upgrades |
-| Engineering pilot | `GET /rules/branches/main` | Medium governance gap | No active effective rules | Review protection proposal and approve activation | Proposal only; owner decision required |
+| Engineering pilot | `GET /rules/branches/main` | Medium governance gap | Initially no active rules; now protected main and four effective rule types | Owner approved activation after verified merge | Done: active ruleset 27044588, seven checks, zero approvals, no bypass |
 | shopping | `node_modules/` tree | High provenance risk | 24,094 tracked dependency-tree paths | Separate provenance and offline archive review; hold builds | Read-only triage only; no cleanup authorized |
 
 ## Archive findings from public default-branch trees
@@ -49,3 +49,5 @@ These are risk indicators. No archive was downloaded, extracted, executed or dec
 
 ## Outstanding visibility
 OAuth authentication cannot list GitHub App installations; no conclusion about provider installations is justified. Package inventory needs `read:packages`. No broader authorization was requested for optional inventory. Local client repositories, ZIP contents, historical commits and exposed-credential rotation were outside this sprint.
+
+Final protection: [active ruleset 27044588](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/rules/27044588) blocks force pushes/deletion and requires PRs, resolved conversations and seven observed checks. API readback confirms zero approvals, no extra approval for unattributed changes and no bypass actors. This pilot-only change followed owner approval and successful post-merge runs.

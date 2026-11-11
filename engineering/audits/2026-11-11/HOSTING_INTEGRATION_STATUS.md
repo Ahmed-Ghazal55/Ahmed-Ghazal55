@@ -6,7 +6,7 @@ Provider account and installation state is **unverified**, not absent. `user/ins
 
 | Provider | Appropriate use after target approval | Exact owner entry point | Authorization boundary |
 |---|---|---|---|
-| Vercel | Next.js PR preview | https://vercel.com/login then https://vercel.com/new | Inspect existing GitHub connection first; selected repository only; contents read and only provider-documented deployment/check permissions |
+| Vercel | Next.js PR preview | https://vercel.com/login then https://vercel.com/new | Selected repository only; the App requests broad repository write permissions, including contents/administration, and updated Actions/Workflows access. Review the actual consent screen before approval |
 | Railway | NestJS / Node API | https://railway.com/login then https://railway.com/dashboard | Inspect existing connection; select one approved API repo; confirm costs before creating any service/database |
 | Cloudflare Pages | Appropriate static website | https://dash.cloudflare.com/ → Workers & Pages → Create → Pages → Connect to Git | Select approved static repo; review requested content/metadata/check/deployment permissions in the actual authorization screen |
 | Cloudflare Tunnel + Access | Protected Ubuntu demonstration | https://one.dash.cloudflare.com/ | Explicit separate approval; restricted app port and Access policy; no public database or Docker socket |
@@ -19,3 +19,10 @@ Inspect current authorizations at https://github.com/settings/installations and 
 Only after an actual target is selected: create preview/staging/production in that repository; separate environment secrets and data; restrict production to the approved release branch; configure human approval where supported, and no automatic production promotion. If the plan cannot enforce the intended approval, leave production workflow absent. Do not copy secrets into this report.
 
 Rollback must name the last known-good artifact/image digest or provider release, health checks, authorized operator and credential revocation steps. Database rollback requires tested restore/migration procedures on staging. None of those runtime validations can be claimed without a selected application and deployment target.
+
+
+## Verified provider authorization caveats
+- Vercel's [GitHub permissions](https://vercel.com/docs/git/vercel-for-github) include repository write access; its [March 2026 update](https://vercel.com/changelog/vercel-github-app-updated-permissions) adds Actions read and Workflows read/write. Selecting a single repository limits exposure; it does not reduce the App's permission set to read-only. No consent was granted.
+- Railway [GitHub autodeploys](https://docs.railway.com/deployments/github-autodeploys) normally deploy connected-branch commits. Inspect settings without creating a service; keep autodeploy disabled for production. Waiting for CI is not a human production approval.
+- Cloudflare documents selected repository access in its [GitHub integration guide](https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/).
+- Azure [Deployment Center](https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions) can generate and commit a deployment workflow. Inspect only until deployment is separately authorized; do not complete the setup wizard merely to audit access. Prefer approved OIDC and existing scoped identities when deployment is authorized.
