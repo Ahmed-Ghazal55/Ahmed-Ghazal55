@@ -9,6 +9,7 @@ on:
       - '.github/workflows/reusable-dotnet-ci.yml'
       - '.github/workflows/reusable-repo-hygiene.yml'
       - 'engineering/fixtures/**'
+      - '.github/workflows/reusable-static-web-ci.yml'
   pull_request:
     paths:
       - '.github/workflows/pilot-ci.yml'
@@ -16,11 +17,16 @@ on:
       - '.github/workflows/reusable-dotnet-ci.yml'
       - '.github/workflows/reusable-repo-hygiene.yml'
       - 'engineering/fixtures/**'
+      - '.github/workflows/reusable-static-web-ci.yml'
 
 permissions:
   contents: read
 
 jobs:
+  static-smoke:
+    uses: ./.github/workflows/reusable-static-web-ci.yml
+    with:
+      working-directory: 'engineering/fixtures/static'
   hygiene-smoke:
     uses: ./.github/workflows/reusable-repo-hygiene.yml
   node-smoke:
