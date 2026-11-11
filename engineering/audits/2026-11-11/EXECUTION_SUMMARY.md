@@ -11,7 +11,7 @@
 - Fourteen accessible repositories inventoried read-only. Public archive risk: 20 paths across 10 repositories; shopping has 24,094 tracked dependency-tree paths. Private repository identity/content omitted from these public reports.
 
 ## Final readback publication
-The final documentation-only PR publishes actual active-protection evidence under the newly enforced rules. Its latest required checks and normal merge state are visible in repository PR history; the final handoff links the resulting PR and runs. No bypass is authorized or used. Root HANDOFF.md records the current writer and exact remaining application/owner steps.
+[Documentation-only PR #12](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/pull/12) passed all seven required jobs and the aggregate CodeQL check, then merged normally under active protection as `c921dba39fa60b48f0c9f3e4920e93a1874287b3`. This verifies documentation-only triggers and usable solo merging with no bypass. Its [post-merge Pilot](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43056065481) and [post-merge CodeQL](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43056065502) both succeeded. A small subsequent documentation correction aligns the board report with the active rules and adds these exact links; it follows the same protected PR path. Root HANDOFF.md records the current writer and exact remaining application/owner steps.
 
 ## Intentionally deferred or blocked
 - Provider accounts/installations: unverified; CLI OAuth token cannot enumerate installations. Owner checks [installed Apps](https://github.com/settings/installations) and [authorizations](https://github.com/settings/applications).
