@@ -40,13 +40,14 @@ jobs:
           cd -- "$PROJECT_DIR"
           test -f package-lock.json || { echo 'A package-lock.json is required for reproducible builds'; exit 1; }
           npm ci --ignore-scripts
-      - name: Check lint, build, and CI tests when scripts exist
+      - name: Require lint, build and test:ci scripts
         env:
           PROJECT_DIR: ${{ inputs.working-directory }}
         run: |
           cd -- "$PROJECT_DIR"
-          npm run lint --if-present
-          npm run build --if-present
-          npm run test:ci --if-present
-# Callers must define lint, build and test:ci scripts as appropriate.
+          node -e 'const p=require("./package.json"); for (const s of ["lint","build","test:ci"]) if (!p.scripts?.[s]) { console.error("Missing required npm script:", s); process.exitCode=1; }'
+          npm run lint
+          npm run build
+          npm run test:ci
+# Callers MUST define lint, build, and test:ci scripts. Passing CI requires real checks.
 # --ignore-scripts is intentional until repository dependency provenance has been reviewed.
