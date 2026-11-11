@@ -22,7 +22,7 @@ Scope: `Ahmed-Ghazal55/Ahmed-Ghazal55` only for writes. All other repositories w
 | CI triggers | Path filters skip documentation-only PRs and leave future required checks pending | Remove filters from pilot and CodeQL; PRs always run; push runs limited to main |
 | .NET tests | `dotnet test` can succeed for a library or empty test suite | Require fresh TRX files and a positive executed count per test run |
 | Vulnerability alerts | Disabled; alert-list 403 and enabled-status 404 | Enabled once; independent GET 204, alert list empty |
-| Branch protection | Rulesets/effective rules empty; legacy protection reports unprotected | Disabled JSON proposal; activation requires owner approval |
+| Branch protection | Rulesets/effective rules empty; legacy protection reports unprotected | API-validated disabled ruleset 27044588; owner approved activation after verified PR #11 merge |
 | Deployment | No environments, deployments or Pages site | Prepared and intentionally deferred; no approved target |
 | Legacy provenance | 10 public repos have 20 archive paths; shopping has 24,094 dependency-tree paths | Read-only inventory; no archives opened and no cleanup |
 

@@ -9,10 +9,10 @@
 - Reviewed disabled [main protection proposal](../../protect-main.proposal.json); no restrictive rules activated without approval.
 
 ## Remote validation
-PR and final run URLs will be appended after the branch is published and checks finish. Local evidence alone is not claimed as successful GitHub execution. Baseline [Pilot run 43021668116](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43021668116) and [CodeQL run 43021668337](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43021668337) both succeeded before this sprint's CI patch.
+Reviewed [PR #11](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/pull/11), initial head `69ade3056739e696e5e0ad8a1080c657e50024f3`: [Pilot run 43054123100](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43054123100) and [CodeQL run 43054123202](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43054123202) succeeded. All seven workflow jobs and the aggregate CodeQL check passed. The regression job ran all eight cases. Final-head verification follows this documentation/proposal update. Baseline [Pilot run 43021668116](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43021668116) and [CodeQL run 43021668337](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43021668337) both succeeded before this sprint's CI patch.
 
 ## Pending, deferred and blocked
-- Main protection activation: explicit owner approval required.
+- Main protection activation: owner approved it after the verified merge of PR #11; currently disabled.
 - Provider installation inventory: OAuth token endpoint restriction; account UI inspection required.
 - GHCR listing: optional `read:packages` absent; no authorization expansion made.
 - Environments, staging/production and external integration: intentionally deferred until an application/target is approved.
