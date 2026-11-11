@@ -3,13 +3,14 @@
 | Field | Value |
 |---|---|
 | Current writer | none |
-| Branch | docs/engineering-sprint-readback-20261111 |
+| Branch | docs/engineering-sprint-consistency-20261111 |
 | Updated | 2026-11-11 by Codex |
 
 ## Goal now
 GitHub pilot foundation verified; any application rollout requires its own approved scope.
 
 ## Done (latest first)
+- Documentation-only PR #12 merged under active protection; all required and post-merge runs passed; board report reconciled.
 - Owner-approved protect-main 27044588 active; protected main, 7 checks, PR/conversation gates, zero approvals, no bypass.
 - PR #11 merged as d922e09; main Pilot and CodeQL runs passed; 8 guard regressions and real Node/.NET/static fixtures passed.
 - Private board 1 reused with both views, all requested fields and issues 1/5/6.
