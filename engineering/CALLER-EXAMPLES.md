@@ -38,7 +38,7 @@ jobs:
       target: './MySolution.sln'
 ```
 
-Replace SDK and target with versions/paths actually supported by the project. Configure tests so a missing test suite does not silently qualify the project as production-ready.
+Replace SDK and target with versions/paths actually supported by the project. The reusable workflow requires fresh VSTest TRX output and at least one executed test in every returned test run. A plain library or zero-test suite fails. Projects using Microsoft.Testing.Platform or a different result format need a separately reviewed adapter; this VSTest workflow must not silently skip that validation.
 
 ## Security and release governance
 - Prefer pinning callers to a reviewed commit SHA rather than tracking `@main` in production projects.

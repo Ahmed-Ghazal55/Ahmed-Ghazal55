@@ -22,11 +22,11 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Checkout project
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
       - name: Set up .NET SDK
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
       - name: Restore
@@ -39,10 +39,28 @@ jobs:
           DOTNET_TARGET: ${{ inputs.target }}
         shell: bash
         run: dotnet build "$DOTNET_TARGET" --no-restore --configuration Release
-      - name: Run tests
+      - name: Run tests and require executed results
         env:
           DOTNET_TARGET: ${{ inputs.target }}
         shell: bash
-        run: dotnet test "$DOTNET_TARGET" --no-restore --configuration Release --verbosity normal
+        run: |
+          set -euo pipefail
+          results_dir=$(mktemp -d "${RUNNER_TEMP:-/tmp}/dotnet-tests.XXXXXX")
+          dotnet test "$DOTNET_TARGET" --no-restore --configuration Release --verbosity normal \
+            --logger trx --results-directory "$results_dir"
+          python3 - "$results_dir" <<'PY'
+          import pathlib, sys, xml.etree.ElementTree as ET
+          files = list(pathlib.Path(sys.argv[1]).rglob('*.trx'))
+          if not files:
+              sys.exit('No TRX results: the target did not execute a supported test project')
+          executed = 0
+          for path in files:
+              root = ET.parse(path).getroot()
+              counters = root.find('.//{*}Counters')
+              if counters is None or int(counters.get('executed', '0')) == 0:
+                  sys.exit('A test run executed zero tests; refusing a false-green result')
+              executed += int(counters.get('executed', '0'))
+          print(f'PASS: {executed} executed tests in {len(files)} fresh TRX reports')
+          PY
 # Specify each project's real SDK and solution/test targets in its caller workflow.
 # Linux jobs cannot validate Windows-only projects or their native dependencies.
