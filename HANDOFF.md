@@ -2,32 +2,35 @@
 
 | Field | Value |
 |---|---|
-| Current writer | Codex 2026-11-11 18:15 +03:00 |
-| Branch | chore/engineering-platform-sprint-20261111 |
+| Current writer | none |
+| Branch | docs/engineering-sprint-readback-20261111 |
 | Updated | 2026-11-11 by Codex |
 
 ## Goal now
-Finish the authorized GitHub engineering sprint in this pilot only.
+GitHub pilot foundation verified; any application rollout requires its own approved scope.
 
 ## Done (latest first)
-- PR #11 open; initial seven workflow jobs and CodeQL aggregate passed on 69ade30.
-- Private board 1 configured with two views and issues 1, 5, 6; no duplicate board.
-- Disabled ruleset 27044588 validated; owner approved activation after verified PR #11 merge.
-- Enabled Dependabot vulnerability alerts; independent GET returned HTTP 204.
-- Read-only discovery found no main protection, environments, deployments or open CodeQL/secret alerts.
+- Owner-approved protect-main 27044588 active; protected main, 7 checks, PR/conversation gates, zero approvals, no bypass.
+- PR #11 merged as d922e09; main Pilot and CodeQL runs passed; 8 guard regressions and real Node/.NET/static fixtures passed.
+- Private board 1 reused with both views, all requested fields and issues 1/5/6.
+- Dependabot vulnerability alerts and security-update PRs enabled and independently verified.
+- Seven public-safe reports in engineering/audits/2026-11-11/; final readback published through a documentation-only PR.
+- Protected local projects, archive contents, external accounts and production resources untouched.
 
 ## Next step (exact)
-1. Verify final PR #11 checks, merge without bypass, verify main, then activate approved ruleset.
-2. Read back active protection and publish final evidence in a documentation PR.
+1. Owner checks GitHub Settings > Applications and selects an approved application/provider if integration is wanted.
+2. Continue issue #6 only under a separate isolated archive/history investigation scope.
+3. Choose a clean TypeScript/framework app for real browser/API CI; no rollout authorized by this pilot.
 
 ## Open problems / decisions for Ghazal
-- Activation approved for ruleset 27044588 only after verified PR #11 merge.
-- Provider accounts/installations cannot be established from this OAuth token.
-- No hosting target approved; environments intentionally deferred.
+- Provider installations cannot be inventoried with this CLI OAuth token; optional GHCR read:packages absent.
+- No approved deployment target; preview/staging/production environments intentionally deferred.
+- No malware verdict; 20 public archive paths and 24,094 shopping dependency-tree paths require investigation.
 
 ## How to verify
 ```bash
-gh auth status
-gh api repos/Ahmed-Ghazal55/Ahmed-Ghazal55/vulnerability-alerts
-gh run list -R Ahmed-Ghazal55/Ahmed-Ghazal55 --limit 10
+gh api repos/Ahmed-Ghazal55/Ahmed-Ghazal55/rulesets/27044588
+gh api repos/Ahmed-Ghazal55/Ahmed-Ghazal55/rules/branches/main
+gh api repos/Ahmed-Ghazal55/Ahmed-Ghazal55/automated-security-fixes
+gh run list -R Ahmed-Ghazal55/Ahmed-Ghazal55 --branch main --limit 5
 ```

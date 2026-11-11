@@ -1,6 +1,6 @@
 # GitHub owner setup: exact UI steps
 
-**Current state (2026-11-11):** CI, CodeQL and Dependabot exist. The [private engineering board](https://github.com/users/Ahmed-Ghazal55/projects/1) is configured with both Board and Table views. Vulnerability alerts are enabled. Restrictive rules await explicit approval; deployment environments are deferred. Use [current owner actions](audits/2026-11-11/OWNER_ACTIONS_REQUIRED.md) before the generic instructions below. Never create a second board or duplicate ruleset.
+**Current state (2026-11-11):** CI, CodeQL and Dependabot exist. The [private engineering board](https://github.com/users/Ahmed-Ghazal55/projects/1) is configured with both Board and Table views. Vulnerability alerts are enabled. Main protection is active after owner approval and verified merge; deployment environments are deferred. Use [current owner actions](audits/2026-11-11/OWNER_ACTIONS_REQUIRED.md) before the generic instructions below. Never create a second board or duplicate ruleset.
 
 ## A. Reuse the configured GitHub Projects board
 1. Sign in to GitHub as Ahmed-Ghazal55.
@@ -16,8 +16,8 @@
 
 ## B. Configure branch protection / rulesets
 1. Open https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/settings/rules (requires repository admin and plan-supported rulesets).
-2. Click **New ruleset > New branch ruleset** or use **Branch protection** if that is your interface.
-3. Review `engineering/protect-main.proposal.json`, target `main`, and keep it disabled until the owner explicitly approves activation.
+2. Open the existing `protect-main` ruleset (27044588); do not create a duplicate.
+3. The live ruleset targets `main` and is Active after owner approval. The JSON proposal remains disabled for safe imports; review the actual live API/UI state.
 4. Block force pushes and branch deletion; require pull requests before merging, and require conversation resolution.
 5. Choose checks after verifying their exact names in a recent successful PR run: Pilot shared workflows / hygiene-smoke / inventory, Pilot shared workflows / node-smoke / verify-node, Pilot shared workflows / dotnet-smoke / verify-dotnet. Check names can appear differently in the UI: use the literal GitHub-provided entries rather than assuming these examples.
 6. Require review count only if you have another independent reviewer; a solo account can otherwise deadlock its own merges. Prefer a practical documented solo exception.

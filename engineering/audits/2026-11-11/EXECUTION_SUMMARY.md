@@ -1,24 +1,25 @@
 # Execution summary — 2026-11-11
 
-## Verified changes
-- Approved Projects scope added to the existing CLI login; no new PAT or third-party App installed.
-- Reused and configured [private Engineering Delivery & Release Board](https://github.com/users/Ahmed-Ghazal55/projects/1), all requested field options, two views and existing issues #1/#5/#6; no duplicate tasks.
-- Enabled missing Dependabot vulnerability alerts; subsequent GET returned 204 and alert list returned empty. No alert dismissed.
-- CI change branch: `chore/engineering-platform-sprint-20261111`. Every PR triggers pilot and CodeQL checks; .NET rejects missing/zero-execution TRX results; existing Action versions pinned to SHA; eight real failure-case regressions added.
-- Local validation: eight guard cases passed; one Node test; one .NET test with fresh executed count; static parsing/syntax passed; npm/NuGet vulnerability queries returned no known fixture vulnerabilities.
-- Reviewed disabled [main protection proposal](../../protect-main.proposal.json); no restrictive rules activated without approval.
+## Completed and verified
+- [PR #11](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/pull/11) merged normally after all checks passed on final head `a401668072b3a4e899dca1de5494c86f078cbdfa`; merge commit `d922e09b650c83b8f8aab4c521118073cdb3c3b6` independently matched main.
+- Both post-merge workflows passed on that exact main commit: [Pilot](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43055071054) and [CodeQL](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43055070838).
+- CI runs for every PR, including documentation-only changes. .NET requires fresh TRX output and positive executed-test counts; eight actual negative-case regressions passed locally and remotely. Node and .NET fixtures each executed one passing test; static parsing/syntax and hygiene passed.
+- Existing Action versions pinned to verified SHAs; read-only CI, no inherited secrets or deployment jobs. npm/NuGet fixture queries returned no known vulnerabilities; this is scoped evidence only.
+- [Private Engineering Delivery & Release Board](https://github.com/users/Ahmed-Ghazal55/projects/1) reused with all requested fields, Board/Table views and issues #1/#5/#6; no duplicate board or issue created.
+- Dependabot vulnerability alerts enabled (independent GET 204). Security-update PRs enabled (`enabled: true`, `paused: false`). No auto-merge or alert dismissal.
+- [protect-main](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/rules/27044588) activated after explicit owner approval, verified merge and successful main runs. Effective rules and `protected: true` read back: deletion/force-push blocks, PRs, resolved conversations, seven real CI checks, zero approvals, no extra approval requirement and no bypass actors.
+- Fourteen accessible repositories inventoried read-only. Public archive risk: 20 paths across 10 repositories; shopping has 24,094 tracked dependency-tree paths. Private repository identity/content omitted from these public reports.
 
-## Remote validation
-Reviewed [PR #11](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/pull/11), initial head `69ade3056739e696e5e0ad8a1080c657e50024f3`: [Pilot run 43054123100](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43054123100) and [CodeQL run 43054123202](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43054123202) succeeded. All seven workflow jobs and the aggregate CodeQL check passed. The regression job ran all eight cases. Final-head verification follows this documentation/proposal update. Baseline [Pilot run 43021668116](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43021668116) and [CodeQL run 43021668337](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions/runs/43021668337) both succeeded before this sprint's CI patch.
+## Final readback publication
+The final documentation-only PR publishes actual active-protection evidence under the newly enforced rules. Its latest required checks and normal merge state are visible in repository PR history; the final handoff links the resulting PR and runs. No bypass is authorized or used. Root HANDOFF.md records the current writer and exact remaining application/owner steps.
 
-## Pending, deferred and blocked
-- Main protection activation: owner approved it after the verified merge of PR #11; currently disabled.
-- Provider installation inventory: OAuth token endpoint restriction; account UI inspection required.
-- GHCR listing: optional `read:packages` absent; no authorization expansion made.
-- Environments, staging/production and external integration: intentionally deferred until an application/target is approved.
-- Legacy archive investigation and actual framework/database/browser coverage remain, as detailed in the other reports.
+## Intentionally deferred or blocked
+- Provider accounts/installations: unverified; CLI OAuth token cannot enumerate installations. Owner checks [installed Apps](https://github.com/settings/installations) and [authorizations](https://github.com/settings/applications).
+- GHCR package listing: optional `read:packages` permission absent; no additional authorization or package publication attempted.
+- Environments and external hosting: intentionally deferred until an application and target are approved. No production deployment, provider connection, paid resource, new secret or third-party App installation.
+- Real TypeScript/React/Next.js/NestJS, browser/API/database coverage and isolated archive/history investigation remain. No protected local application was modified.
 
-## Deliverables
+## Seven deliverables
 1. [GITHUB_ENGINEERING_AUDIT.md](GITHUB_ENGINEERING_AUDIT.md)
 2. [GITHUB_PROJECTS_STATUS.md](GITHUB_PROJECTS_STATUS.md)
 3. [SECURITY_AND_DEPENDABOT_REPORT.md](SECURITY_AND_DEPENDABOT_REPORT.md)
@@ -27,4 +28,4 @@ Reviewed [PR #11](https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/pull/11), ini
 6. [OWNER_ACTIONS_REQUIRED.md](OWNER_ACTIONS_REQUIRED.md)
 7. This execution summary.
 
-Rollback for code changes is a reviewed revert PR. No existing application files, resources, Git history or branches were deleted, and no production deployment was enabled. Administrative changes have independent API readback. The writer lock is recorded and cleared in root HANDOFF.md at handoff.
+Code rollback is a reviewed revert PR, subject to active checks. Ruleset edits remain available to the repository administrator; no account-administration restriction was introduced. No existing files, branches, repositories or Git history were deleted.
