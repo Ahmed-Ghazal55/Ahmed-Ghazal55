@@ -46,3 +46,21 @@ Replace SDK and target with versions/paths actually supported by the project. Co
 - Do not run `pull_request_target` workflows that execute untrusted PR code.
 - Never combine automated PR analysis with unrestricted write permissions.
 - Separate publication from build checks; require manual approval and server/service connection.
+
+## Static HTML / JavaScript (no package.json)
+```yaml
+name: Static CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  static:
+    uses: Ahmed-Ghazal55/Ahmed-Ghazal55/.github/workflows/reusable-static-web-ci.yml@main
+    with:
+      working-directory: '.'
+```
+
+Requires an `index.html` at the selected working directory and checks JavaScript syntax. This is *not* an end-to-end/browser or a full HTML standards audit. Pin the reusable workflow by reviewed commit SHA when a deployment-ready repository adopts it.
