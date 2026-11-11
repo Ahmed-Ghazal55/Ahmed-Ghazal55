@@ -35,7 +35,7 @@
 1. Open https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/pulls and filter author `dependabot[bot]`.
 2. For each update PR, read the changelog, supported Node/runtime requirements, licenses, permissions and workflow modifications.
 3. Inspect successful PR checks and consider merging one update at a time; never auto-merge a major update without compatibility review.
-4. Open https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/security/code-scanning if visible and review alerts individually, not just the Actions run status.
+4. Open https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/security/code-scanning if visible and review alerts individually, not just the Actions run status. This repository already uses a custom CodeQL workflow (advanced setup): do NOT enable default setup on top without deliberately migrating, because it may disable or duplicate the custom scan.
 5. Inspect https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/actions and confirm the last CodeQL and Pilot runs succeeded.
 6. Check Settings > Security & analysis / Advanced Security for features available on your plan.
 
