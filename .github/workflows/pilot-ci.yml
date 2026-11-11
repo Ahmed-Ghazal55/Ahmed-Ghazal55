@@ -3,26 +3,28 @@ name: Pilot shared workflows
 on:
   workflow_dispatch:
   push:
-    paths:
-      - '.github/workflows/pilot-ci.yml'
-      - '.github/workflows/reusable-node-ci.yml'
-      - '.github/workflows/reusable-dotnet-ci.yml'
-      - '.github/workflows/reusable-repo-hygiene.yml'
-      - 'engineering/fixtures/**'
-      - '.github/workflows/reusable-static-web-ci.yml'
+    branches: [main]
   pull_request:
-    paths:
-      - '.github/workflows/pilot-ci.yml'
-      - '.github/workflows/reusable-node-ci.yml'
-      - '.github/workflows/reusable-dotnet-ci.yml'
-      - '.github/workflows/reusable-repo-hygiene.yml'
-      - 'engineering/fixtures/**'
-      - '.github/workflows/reusable-static-web-ci.yml'
 
 permissions:
   contents: read
 
 jobs:
+  ci-guard-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6
+        with:
+          dotnet-version: '10.0.x'
+      - name: Verify real CI failure cases
+        run: python3 engineering/scripts/test-ci-guards.py
   static-smoke:
     uses: ./.github/workflows/reusable-static-web-ci.yml
     with:

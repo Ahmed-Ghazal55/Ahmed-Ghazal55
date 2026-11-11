@@ -1,23 +1,23 @@
 # GitHub owner setup: exact UI steps
 
-**Current state:** CI pilot, CodeQL pilot and Dependabot configuration live in the profile repository. This document does not install third-party apps, create Projects, or set repository rules.
+**Current state (2026-11-11):** CI, CodeQL and Dependabot exist. The [private engineering board](https://github.com/users/Ahmed-Ghazal55/projects/1) is configured with both Board and Table views. Vulnerability alerts are enabled. Restrictive rules await explicit approval; deployment environments are deferred. Use [current owner actions](audits/2026-11-11/OWNER_ACTIONS_REQUIRED.md) before the generic instructions below. Never create a second board or duplicate ruleset.
 
-## A. Create the GitHub Projects board
+## A. Reuse the configured GitHub Projects board
 1. Sign in to GitHub as Ahmed-Ghazal55.
-2. Open https://github.com/users/Ahmed-Ghazal55/projects and select **New project**.
-3. Choose the Board template, name it **Engineering Delivery & Release Board**, and set visibility to **Private** initially (you can later make a sanitized public showcase board).
-4. Add a single-select field called **Stage** with values Backlog, Ready, In Progress, Review, Verify, Preview, Done. You may choose the existing built-in Status field instead, and customize its options if allowed.
-5. Create a field **Workstream** with values JS/TS Frontend, Node/NestJS, C#/.NET, Database, Security, DevOps/Deploy, Documentation.
-6. Create a field **Project type** with values Learning, Active/Protected, Legacy, Pilot. Avoid storing secrets or client data in issue text.
-7. Add issues https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/issues/1, /5, and /6 through **Add item** or issue sidebar **Projects**.
-8. Set Stage: Sprint 01 -> Verify; governance issue -> Ready; security issue -> Backlog.
-9. Create views grouped by Stage and Workstream. Use sprint iteration planning only if you have a meaningful cadence; do not create empty recurring sprints.
+2. Open https://github.com/users/Ahmed-Ghazal55/projects/1; do not create a new project.
+3. Confirm **Engineering Delivery & Release Board** remains **Private**.
+4. Existing **Status** options: Backlog, Ready, In Progress, Review, Verify, Preview, Done. Do not add a duplicate Stage field.
+5. Existing **Workstream** options: Frontend / React / Next.js; Backend / Node.js / NestJS; C# / .NET; Database; Security; DevOps / Deployment; Documentation / Learning.
+6. Existing **Project classification** options: Pilot, Active / Protected, Legacy, Learning. Avoid secrets or client data in issue text.
+7. Issues #1, #5 and #6 are already linked; do not add duplicate items.
+8. Current Status: #1 and #5 In Progress; #6 Ready. Change only after remaining work is verified.
+9. Delivery board groups by Status; Engineering table displays the same fields. Optional: group the table by Workstream. Do not create empty recurring sprints.
 10. Confirm the three Issues are visible and the private board has only approved collaborators.
 
 ## B. Configure branch protection / rulesets
 1. Open https://github.com/Ahmed-Ghazal55/Ahmed-Ghazal55/settings/rules (requires repository admin and plan-supported rulesets).
 2. Click **New ruleset > New branch ruleset** or use **Branch protection** if that is your interface.
-3. Name it `protect-main`, mark Active, target default branch `main`.
+3. Review `engineering/protect-main.proposal.json`, target `main`, and keep it disabled until the owner explicitly approves activation.
 4. Block force pushes and branch deletion; require pull requests before merging, and require conversation resolution.
 5. Choose checks after verifying their exact names in a recent successful PR run: Pilot shared workflows / hygiene-smoke / inventory, Pilot shared workflows / node-smoke / verify-node, Pilot shared workflows / dotnet-smoke / verify-dotnet. Check names can appear differently in the UI: use the literal GitHub-provided entries rather than assuming these examples.
 6. Require review count only if you have another independent reviewer; a solo account can otherwise deadlock its own merges. Prefer a practical documented solo exception.

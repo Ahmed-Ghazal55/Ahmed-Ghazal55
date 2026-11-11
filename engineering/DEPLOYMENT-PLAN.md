@@ -1,6 +1,6 @@
 # Controlled Preview and Deployment Plan
 
-Status: PLAN ONLY. No hosting provider connected; no production deployments enabled.
+Status (2026-11-11): PLAN ONLY. Provider account/installations are unverified; no deployment target is approved for this pilot. No production deployments enabled by this sprint. See [hosting integration status](audits/2026-11-11/HOSTING_INTEGRATION_STATUS.md).
 
 | Stack | Preview option | Release target |
 | --- | --- | --- |
