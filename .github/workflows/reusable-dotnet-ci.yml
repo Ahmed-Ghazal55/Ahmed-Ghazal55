@@ -26,7 +26,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up .NET SDK
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
       - name: Restore
